@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Subscription Plans</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+  }
+  .plan {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .plan h2 {
+    margin: 0;
+    padding: 0;
+  }
+  .plan-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .billing-interval {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .credit-card-form {
+    margin-top: 10px;
+  }
+  .credit-card-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  .credit-card-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .subscribe-button,
+  .cancel-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .selected-plan {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+  }
+  .selected-plan h3 {
+    margin: 0;
+    padding: 0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="plan">
+    <h2>Basic Plan</h2>
+    <div class="plan-details">
+      <div>
+        <p>Monthly Price: 100 INR</p>
+        <p>Yearly Price: 1000 INR</p>
+        <p>Video quality: Good</p>
+        <p>Resolution: 480p</p>
+      </div>
+      <div>
+        <p>Devices you can use to watch: Phone</p>
+        <p>Number of active screens at one time: 1</p>
+      </div>
+    </div>
+    <div>
+        <!-- <p>Don't have an account? <a href="bank2.html">View Subscription Plans</a></p> -->
+      </div>
+
+      <p><a href="table.html">view subsciption plan</a></p>
+
+
+      
+    <div class="billing-interval">
+      <input type="radio" name="billingBasic" value="monthly" checked> Monthly
+      <input type="radio" name="billingBasic" value="yearly"> Yearly
+      <button class="subscribe-button" onclick="subscribe('Basic')">Subscribe</button>
+    </div>
+    <div class="credit-card-form">
+      <label for="cardNumber">Card Number</label>
+      <input type="text" id="cardNumber" placeholder="Test Card Number">
+    </div>
+  </div>
+  <div class="selected-plan">
+    <h3>Selected Plan Details</h3>
+    <p><strong>Plan:</strong> <span id="selectedPlanName"></span></p>
+    <p><strong>Billing Interval:</strong> <span id="selectedBillingInterval"></span></p>
+    <button class="cancel-button" onclick="cancelSubscription()">Cancel Subscription</button>
+  </div>
+</div>
+<script>
+  function subscribe(plan) {
+    const billingInterval = document.querySelector(`input[name="billing${plan}"]:checked`).value;
+    const cardNumber = document.getElementById('cardNumber').value;
+
+    if (cardNumber === '') {
+      alert('Please enter a valid card number.');
+      return;
+    }
+
+    const selectedPlanName = document.getElementById('selectedPlanName');
+    const selectedBillingInterval = document.getElementById('selectedBillingInterval');
+
+    selectedPlanName.textContent = plan;
+    selectedBillingInterval.textContent = billingInterval;
+
+    document.querySelector('.selected-plan').style.display = 'block';
+  }
+
+  function cancelSubscription() {
+    document.querySelector('.selected-plan').style.display = 'none';
+  }
+</script>
+</body>
+</html>
